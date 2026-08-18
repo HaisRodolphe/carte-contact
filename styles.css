@@ -202,10 +202,10 @@ body {
 }
 
 .qr-code {
-  width: 48px;
-  height: 48px;
-  padding: 3px;
-  border-radius: 6px;
+  width: 72px;
+  height: 72px;
+  padding: 4px;
+  border-radius: 8px;
   background: #fff;
   box-shadow: 0 2px 6px rgba(23, 35, 45, 0.08);
   flex-shrink: 0;
@@ -398,8 +398,8 @@ a:focus-visible {
   }
 
   .qr-code {
-    width: clamp(32px, 7cqw, 40px);
-    height: clamp(32px, 7cqw, 40px);
+    width: clamp(56px, 12cqw, 72px);
+    height: clamp(56px, 12cqw, 72px);
   }
 }
 
