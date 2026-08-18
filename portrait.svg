@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-labelledby="title desc">
+  <title id="title">Portrait premium Rodolphe HAIS</title>
+  <desc id="desc">Portrait professionnel élégant avec un style premium.</desc>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#f9fbff"/>
+      <stop offset="55%" stop-color="#edf3f8"/>
+      <stop offset="100%" stop-color="#dfeaf4"/>
+    </radialGradient>
+    <linearGradient id="jacket" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4f7696"/>
+      <stop offset="100%" stop-color="#2d4d67"/>
+    </linearGradient>
+    <linearGradient id="shirt" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#ebf2f8"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f3d4bb"/>
+      <stop offset="100%" stop-color="#d9a681"/>
+    </linearGradient>
+    <linearGradient id="hair" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2b3848"/>
+      <stop offset="100%" stop-color="#1d2734"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="200" height="200" fill="url(#bg)"/>
+  <circle cx="100" cy="100" r="82" fill="none" stroke="#4d6d8a" stroke-width="2.2" opacity="0.55"/>
+  <circle cx="100" cy="100" r="70" fill="rgba(255,255,255,0.18)"/>
+
+  <path d="M54 154c10-26 28-40 46-40s36 14 46 40v26H54z" fill="url(#jacket)"/>
+  <path d="M76 114h48l12 42H64z" fill="url(#shirt)"/>
+  <path d="M64 117l18 18 18-12 18 12 18-18 16 38H48z" fill="url(#shirt)" opacity="0.95"/>
+
+  <ellipse cx="100" cy="81" rx="30" ry="35" fill="url(#skin)"/>
+  <path d="M76 70c4-28 17-41 33-41 24 0 38 20 38 42-11-12-22-18-35-18-12 0-24 7-36 17z" fill="url(#hair)"/>
+  <path d="M70 86c6-22 20-32 32-32 24 0 34 17 36 36-11-11-23-17-36-17-12 0-24 6-32 13z" fill="url(#hair)" opacity="0.92"/>
+
+  <circle cx="91" cy="86" r="2.8" fill="#1d2734"/>
+  <circle cx="109" cy="86" r="2.8" fill="#1d2734"/>
+  <path d="M92 101c5 5 11 5 16 0" stroke="#a66b5a" stroke-width="2.3" stroke-linecap="round" fill="none"/>
+  <path d="M88 108c6 5 18 5 24 0" stroke="#bd7a66" stroke-width="2.2" stroke-linecap="round" fill="none" opacity="0.8"/>
+
+  <path d="M92 116c4 8 12 10 18 10 6 0 14-2 18-10" stroke="#d39d84" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+  <path d="M72 151c11-7 19-10 28-10 11 0 18 3 28 10" stroke="#5d7e9d" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8"/>
+</svg>
