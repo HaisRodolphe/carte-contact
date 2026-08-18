@@ -1,7 +1,7 @@
 /**
  * Carte de Contact - Script
  * vCard Download & Security Protection
- * @version 1.0
+ * @version 1.1
  * @author Rodolphe HAIS
  */
 
@@ -18,7 +18,7 @@ const SecurityConfig = {
   // Content Security Policy enforcement
   contentSecurityPolicy: {
     'default-src': ["'self'"],
-    'script-src': ["'self'", "'strict-dynamic'"],
+    'script-src': ["'self'"],
     'style-src': ["'self'", "'unsafe-inline'", "fonts.googleapis.com"],
     'img-src': ["'self'", "data:", "api.qrserver.com"],
     'font-src': ["'self'", "fonts.gstatic.com"],
@@ -70,17 +70,42 @@ function initializeSecurity() {
 // vCard Generation & Download
 // ========================================
 
-/**
- * Photo data extraction
- */
-const portraitElement = document.getElementById('portrait');
-const PHOTO_DATA_URI = portraitElement ? portraitElement.currentSrc || portraitElement.src : '';
-const PHOTO_BASE64 = (PHOTO_DATA_URI && PHOTO_DATA_URI.startsWith('data:image'))
-  ? PHOTO_DATA_URI.split(',')[1] || ''
-  : '';
+const PHOTO_URL = 'Photo carte de visite.png';
 
 /**
- * Fold vCard lines to 75 characters per line (RFC 6868)
+ * Load the portrait photo and convert it to base64.
+ * Uses fetch + FileReader since img.src/currentSrc only ever exposes
+ * the resolved URL, never the actual image bytes.
+ * @returns {Promise<{base64: string, type: string} | null>}
+ */
+async function loadPhotoAsBase64() {
+  try {
+    const response = await fetch(PHOTO_URL);
+    if (!response.ok) return null;
+
+    const blob = await response.blob();
+    const mimeType = blob.type || 'image/png';
+    const type = mimeType.split('/')[1]?.toUpperCase() || 'PNG';
+
+    const base64 = await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const commaIndex = reader.result.indexOf(',');
+        resolve(reader.result.slice(commaIndex + 1));
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+
+    return { base64, type };
+  } catch (err) {
+    console.warn('Photo non intégrée à la vCard :', err);
+    return null;
+  }
+}
+
+/**
+ * Fold vCard lines to 75 characters per line (RFC 6350)
  * @param {string} str - Line content
  * @param {number} limit - Character limit per line
  * @returns {string} Folded line
@@ -95,10 +120,11 @@ function foldLine(str, limit = 75) {
 }
 
 /**
- * Build vCard format (RFC 3261)
+ * Build vCard format (RFC 6350)
+ * @param {{base64: string, type: string} | null} photo
  * @returns {string} vCard data
  */
-function buildVCard() {
+function buildVCard(photo) {
   const lines = [
     'BEGIN:VCARD',
     'VERSION:3.0',
@@ -112,9 +138,8 @@ function buildVCard() {
   ];
 
   // Add photo only if valid base64 data exists
-  if (PHOTO_BASE64) {
-    const photoPrefix = 'PHOTO;ENCODING=BASE64;TYPE=JPEG:';
-    const photoLine = photoPrefix + PHOTO_BASE64;
+  if (photo && photo.base64) {
+    const photoLine = `PHOTO;ENCODING=BASE64;TYPE=${photo.type}:${photo.base64}`;
     lines.push(foldLine(photoLine));
   }
 
@@ -152,21 +177,26 @@ function sanitizeFilename(filename) {
 async function downloadVCard() {
   const btn = document.getElementById('save-btn');
   const status = document.getElementById('status');
+
+  if (!btn || !status) {
+    console.error('UI elements not found');
+    return;
+  }
+
   const originalText = btn.textContent;
+  const originalStatus = status.textContent;
 
   try {
-    // Validate button exists
-    if (!btn || !status) {
-      throw new Error('UI elements not found');
-    }
-
     // Update UI
     btn.textContent = 'Préparation...';
     btn.disabled = true;
     status.textContent = 'Préparation du fichier vCard...';
 
+    // Load photo (best-effort — download still proceeds without it)
+    const photo = await loadPhotoAsBase64();
+
     // Build vCard
-    const vcard = buildVCard();
+    const vcard = buildVCard(photo);
 
     // Validate vCard
     if (!isValidVCard(vcard)) {
@@ -204,7 +234,9 @@ async function downloadVCard() {
 
     // Success feedback
     btn.textContent = 'Contact enregistré ✓';
-    status.textContent = 'Fichier .vcf téléchargé — ouvre-le pour importer le contact.';
+    status.textContent = photo
+      ? 'Fichier .vcf téléchargé avec photo — ouvre-le pour importer le contact.'
+      : 'Fichier .vcf téléchargé — ouvre-le pour importer le contact.';
 
   } catch (error) {
     // Error handling
@@ -223,6 +255,7 @@ async function downloadVCard() {
     setTimeout(() => {
       btn.textContent = originalText;
       btn.disabled = false;
+      status.textContent = originalStatus;
       status.style.color = '';
     }, 2500);
   }
@@ -284,6 +317,7 @@ if (typeof module !== 'undefined' && module.exports) {
     isValidVCard,
     sanitizeFilename,
     foldLine,
+    loadPhotoAsBase64,
     SecurityConfig,
     downloadVCard
   };
