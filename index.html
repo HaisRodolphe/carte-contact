@@ -1,512 +1,166 @@
 <!doctype html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rodolphe HAIS — Carte de contact</title>
-<meta name="description" content="Négociateur Technico-Commercial B2B — Ploufragan, Côtes-d'Armor">
-<meta property="og:title" content="Rodolphe HAIS — Négociateur Technico-Commercial B2B">
-<meta property="og:description" content="Contact professionnel — Ploufragan, Côtes-d'Armor">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --paper:#eef3f7;
-    --paper-strong:#e3ebf3;
-    --card:#ffffff;
-    --ink:#17232d;
-    --ink-soft:#5e7284;
-    --line:#dfe7ee;
-    --accent-blue:#3f607d;
-    --accent-blue-press:#2c4965;
-    --accent-soft:#edf4fa;
-    --shadow: rgba(17, 35, 51, 0.12);
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <!-- Security Headers -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'strict-dynamic'; style-src 'self' 'unsafe-inline' fonts.googleapis.com; img-src 'self' data: api.qrserver.com; font-src 'self' fonts.gstatic.com; connect-src 'self' api.qrserver.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="no-referrer-when-downgrade">
+  <meta name="robots" content="index, follow">
 
-  *{box-sizing:border-box;}
+  <!-- Meta Tags -->
+  <title>Rodolphe HAIS — Carte de contact</title>
+  <meta name="description" content="Négociateur Technico-Commercial B2B — Ploufragan, Côtes-d'Armor">
+  <meta name="theme-color" content="#3f607d">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  html, body {
-    width:100%;
-    max-width:100%;
-    overflow-x:hidden;
-  }
+  <!-- Open Graph Tags -->
+  <meta property="og:title" content="Rodolphe HAIS — Négociateur Technico-Commercial B2B">
+  <meta property="og:description" content="Contact professionnel — Ploufragan, Côtes-d'Armor">
+  <meta property="og:type" content="profile">
+  <meta property="og:locale" content="fr_FR">
 
-  body{
-    margin:0;
-    min-height:100vh;
-    background:
-      radial-gradient(circle at top, rgba(255,255,255,0.9), rgba(255,255,255,0) 40%),
-      linear-gradient(135deg, var(--paper) 0%, var(--paper-strong) 100%);
-    display:flex;
-    align-items:flex-start;
-    justify-content:center;
-    padding:clamp(16px, 4vw, 40px) 12px;
-    font-family:'Inter',sans-serif;
-    color:var(--ink);
-  }
+  <!-- Preconnect to External Domains -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://api.qrserver.com">
 
-  .card{
-    width:min(100%, 420px);
-    max-width:420px;
-    background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.96));
-    border:1px solid rgba(23,35,45,0.08);
-    border-radius:clamp(18px, 4vw, 22px);
-    padding:clamp(16px, 5%, 22px);
-    box-shadow:0 18px 40px var(--shadow);
-    position:relative;
-    overflow:hidden;
-    container-type:inline-size;
-  }
+  <!-- External Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-  .card::before{
-    content:"";
-    position:absolute;
-    inset:0 0 auto 0;
-    height:92px;
-    background:linear-gradient(90deg, rgba(63,96,125,0.06), rgba(63,96,125,0.02), rgba(63,96,125,0.06));
-  }
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles.css" media="all">
+  <link rel="stylesheet" href="styles.css" media="print">
 
-  .doc-header{
-    position:relative;
-    z-index:1;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    font-family:'IBM Plex Mono',monospace;
-    font-size:9px;
-    letter-spacing:.16em;
-    text-transform:uppercase;
-    color:var(--ink-soft);
-    padding-bottom:12px;
-    margin-bottom:20px;
-    border-bottom:1px solid rgba(23,35,45,0.12);
-  }
-
-  .photo-frame{
-    position:relative;
-    width:clamp(96px, 28%, 120px);
-    height:clamp(96px, 28%, 120px);
-    margin:0 auto clamp(14px, 4%, 18px);
-    padding:clamp(4px, 3%, 6px);
-    border-radius:50%;
-    background:linear-gradient(135deg, var(--accent-blue), rgba(63,96,125,0.35));
-    box-shadow:0 clamp(8px, 2vw, 12px) clamp(20px, 5vw, 28px) rgba(63,96,125,0.18);
-  }
-  .photo-frame img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-    background:var(--accent-soft);
-    border-radius:50%;
-    border:2px solid rgba(255,255,255,0.8);
-    filter:saturate(1.05) contrast(1.03);
-  }
-  .corner{position:absolute;width:14px;height:14px;border-color:rgba(255,255,255,0.95);}
-  .corner.tl{top:4px;left:4px;border-top:2px solid;border-left:2px solid;}
-  .corner.tr{top:4px;right:4px;border-top:2px solid;border-right:2px solid;}
-  .corner.bl{bottom:4px;left:4px;border-bottom:2px solid;border-left:2px solid;}
-  .corner.br{bottom:4px;right:4px;border-bottom:2px solid;border-right:2px solid;}
-
-  .name{
-    font-family:'Archivo',sans-serif;
-    font-weight:700;
-    font-size:clamp(20px, 4.5cqw, 27px);
-    text-align:center;
-    letter-spacing:-0.02em;
-    margin:0 0 clamp(4px, 1.5cqh, 6px);
-  }
-  .role{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:clamp(8px, 2cqw, 10px);
-    text-align:center;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    color:var(--accent-blue);
-    margin:0 0 clamp(16px, 4cqh, 20px);
-  }
-
-  .presentation{
-    margin:0 0 clamp(14px, 3.5cqh, 18px);
-    padding:0 clamp(6px, 2cqw, 10px);
-    text-align:center;
-    font-size:clamp(11px, 2.5cqw, 13px);
-    line-height:1.6;
-    color:var(--ink-soft);
-  }
-  .presentation strong{color:var(--ink);}
-
-  .titleblock{
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(min(60px, 25%), 1fr));
-    border-top:1px solid rgba(23,35,45,0.1);
-    border-bottom:1px solid rgba(23,35,45,0.1);
-    background:rgba(63,96,125,0.02);
-    margin-bottom:clamp(14px, 3.5cqh, 18px);
-    border-radius:clamp(10px, 2cqw, 12px);
-    overflow:hidden;
-  }
-
-  .qr-block{
-    position:absolute;
-    top:70px;
-    right:14px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
-    gap:0;
-    margin:0;
-    padding:0;
-    border:none;
-    background:none;
-    width:auto;
-    flex-shrink:0;
-    opacity:1;
-    transition:opacity .3s ease;
-  }
-  .qr-block:hover{
-    opacity:1;
-  }
-  .qr-code{
-    width:48px;
-    height:48px;
-    padding:3px;
-    border-radius:6px;
-    background:#fff;
-    box-shadow:0 2px 6px rgba(23,35,45,0.08);
-    flex-shrink:0;
-  }
-  .qr-text{
-    font-size:7px;
-    line-height:1.2;
-    color:var(--ink-soft);
-    text-align:center;
-    margin-top:2px;
-    letter-spacing:0.05em;
-  }
-  .qr-text strong{
-    display:none;
-  }
-
-  .field{
-    padding:clamp(8px, 2cqh, 12px) clamp(6px, 2cqw, 8px);
-    border-right:1px solid var(--line);
-    display:flex;
-    flex-direction:column;
-    gap:clamp(2px, 1cqh, 4px);
-    text-align:center;
-  }
-  .field:last-child{border-right:none;}
-  .label{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:clamp(7px, 1.5cqw, 8px);
-    letter-spacing:.1em;
-    text-transform:uppercase;
-    color:var(--ink-soft);
-  }
-  .value{
-    font-size:clamp(10px, 2.2cqw, 12px);
-    font-weight:600;
-    line-height:1.3;
-  }
-
-  .contact-list{
-    display:flex;
-    flex-direction:column;
-    margin-bottom:18px;
-    gap:4px;
-  }
-  .contact-row{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:clamp(8px, 2cqw, 12px);
-    padding:clamp(10px, 2cqh, 12px) clamp(10px, 2.5cqw, 12px);
-    border:1px solid rgba(23,35,45,0.06);
-    border-radius:clamp(10px, 2cqw, 12px);
-    text-decoration:none;
-    color:inherit;
-    background:rgba(255,255,255,0.7);
-    transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
-  }
-  .contact-row:hover{
-    transform:translateY(-1px);
-    border-color:rgba(63,96,125,0.28);
-    box-shadow:0 8px 18px rgba(63,96,125,0.08);
-  }
-  .clabel{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:clamp(8px, 1.8cqw, 9px);
-    letter-spacing:.12em;
-    text-transform:uppercase;
-    color:var(--ink-soft);
-    flex-shrink:0;
-  }
-  .cvalue{
-    font-size:clamp(11px, 2.3cqw, 13px);
-    font-weight:600;
-    text-align:right;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-    min-width:0;
-    flex:1;
-  }
-
-  .contact-row[href^="tel:"] .cvalue {
-    letter-spacing:0.01em;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .save-btn{
-    width:100%;
-    padding:clamp(13px, 2.5cqh, 16px);
-    background:linear-gradient(135deg, var(--accent-blue), var(--accent-blue-press));
-    color:#fff;
-    border:none;
-    border-radius:clamp(10px, 2cqw, 12px);
-    font-family:'Inter',sans-serif;
-    font-weight:700;
-    font-size:clamp(12px, 2.2cqw, 14px);
-    letter-spacing:.01em;
-    cursor:pointer;
-    transition:transform .15s ease, filter .15s ease, box-shadow .15s ease;
-    box-shadow:0 10px 20px rgba(45,73,101,0.18);
-  }
-  .save-btn:hover{filter:brightness(1.02);}
-  .save-btn:active{transform:scale(0.985);}
-  .save-btn:disabled{opacity:.65;cursor:default;transform:none;box-shadow:none;}
-  .save-btn:focus-visible{outline:3px solid #EAF3FF;outline-offset:2px;}
-
-  .foot-note{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:9px;
-    text-align:center;
-    color:var(--ink-soft);
-    letter-spacing:.04em;
-    margin-top:14px;
-  }
-
-  a:focus-visible{outline:2px dashed var(--accent-blue);outline-offset:3px;}
-
-  @media (prefers-reduced-motion:reduce){
-    .save-btn,.contact-row{transition:none;}
-  }
-
-  @container (max-width: 360px) {
-    .doc-header {
-      flex-direction:column;
-      align-items:flex-start;
-      gap:clamp(4px, 1cqh, 6px);
-      font-size:clamp(7px, 1.4cqw, 8px);
-    }
-
-    .titleblock {
-      grid-template-columns:1fr;
-    }
-
-    .field {
-      border-right:none;
-      border-bottom:1px solid var(--line);
-    }
-
-    .field:last-child {
-      border-bottom:none;
-    }
-
-    .contact-row {
-      flex-direction:column;
-      align-items:flex-start;
-      text-align:left;
-    }
-
-    .cvalue {
-      text-align:left;
-      white-space:normal;
-      line-height:1.4;
-    }
-
-    .qr-block {
-      width:clamp(40px, 8cqw, 48px);
-    }
-
-    .qr-code {
-      width:clamp(32px, 7cqw, 40px);
-      height:clamp(32px, 7cqw, 40px);
-    }
-  }
-
-  @media print {
-    body { background: #fff; padding: 0; }
-    .card { box-shadow: none; border: none; max-width: 90mm; margin: 10mm auto; }
-    body { background-image: none; }
-    .save-btn, .doc-header { display: none; }
-  }
-</style>
+  <!-- Favicon & Icons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%233f607d'/><text x='50' y='65' font-size='60' font-weight='bold' text-anchor='middle' fill='white' font-family='Arial'>RH</text></svg>">
+  
+  <!-- Manifest for PWA -->
+  <meta name="manifest" content="manifest.json">
 </head>
+
 <body>
-<main class="card" role="article" aria-label="Fiche contact de Rodolphe HAIS">
-  <div class="doc-header">
-    <span>Fiche contact</span>
-    <span>Réf. RH—001</span>
-  </div>
-
-  <div class="photo-frame" aria-hidden="false">
-    <img id="portrait" src="Photo carte de visite.png" alt="Portrait de Rodolphe HAIS" width="112" height="112" loading="lazy">
-    <span class="corner tl"></span>
-    <span class="corner tr"></span>
-    <span class="corner bl"></span>
-    <span class="corner br"></span>
-  </div>
-
-  <h1 class="name">Rodolphe HAIS</h1>
-  <p class="role">Négociateur Technico-Commercial B2B</p>
-  <p class="presentation">
-    <strong>Accompagnement commercial B2B</strong> pour développer les ventes, fidéliser les clients et proposer des solutions sur mesure.
-  </p>
-
-  <div class="titleblock">
-    <div class="field">
-      <span class="label">Localisation</span>
-      <span class="value">Ploufragan (22)</span>
+  <main class="card" role="article" aria-label="Fiche contact de Rodolphe HAIS">
+    <!-- Document Header -->
+    <div class="doc-header">
+      <span>Fiche contact</span>
+      <span>Réf. RH—001</span>
     </div>
-    <div class="field">
-      <span class="label">Expérience</span>
-      <span class="value">23 ans</span>
-    </div>
-    <div class="field">
-      <span class="label">Certification</span>
-      <span class="value">Niv. 5</span>
-    </div>
-  </div>
 
-  <div class="qr-block" aria-label="QR code de contact">
-    <img
-      class="qr-code"
-      src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=BEGIN%3AVCARD%0AVERSION%3A3.0%0AN%3AHAIS%3BRodolphe%3B%3B%3B%0AFN%3ARodolphe%20HAIS%0ATITLE%3AN%C3%A9gociateur%20Technico-Commercial%20B2B%0AORG%3A%0AEMAIL%3BTYPE%3DWORK%3Arodolphe.hais%40gmail.com%0ATEL%3BTYPE%3DCELL%3A%2B33628407987%0AURL%3Ahttps%3A%2F%2Fwww.linkedin.com%2Fin%2Frodolphe-hais-technico-commercial%0AADR%3BTYPE%3DWORK%3A%3B%3BPloufragan%3B%3B%3BFrance%0AEND%3AVCARD"
-      alt="QR code pour enregistrer le contact"
+    <!-- Photo Frame -->
+    <div class="photo-frame" aria-hidden="false">
+      <img
+        id="portrait"
+        src="Photo carte de visite.png"
+        alt="Portrait professionnel de Rodolphe HAIS"
+        width="112"
+        height="112"
+        loading="lazy"
+        crossorigin="anonymous"
+      >
+      <span class="corner tl"></span>
+      <span class="corner tr"></span>
+      <span class="corner bl"></span>
+      <span class="corner br"></span>
+    </div>
+
+    <!-- Name & Title -->
+    <h1 class="name">Rodolphe HAIS</h1>
+    <p class="role">Négociateur Technico-Commercial B2B</p>
+
+    <!-- Presentation -->
+    <p class="presentation">
+      <strong>Accompagnement commercial B2B</strong> pour développer les ventes, fidéliser les clients et proposer des solutions sur mesure.
+    </p>
+
+    <!-- Title Block -->
+    <div class="titleblock">
+      <div class="field">
+        <span class="label">Localisation</span>
+        <span class="value">Ploufragan (22)</span>
+      </div>
+      <div class="field">
+        <span class="label">Expérience</span>
+        <span class="value">23 ans</span>
+      </div>
+      <div class="field">
+        <span class="label">Certification</span>
+        <span class="value">Niv. 5</span>
+      </div>
+    </div>
+
+    <!-- QR Code Block -->
+    <div class="qr-block" aria-label="Code QR de contact">
+      <img
+        class="qr-code"
+        src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=BEGIN%3AVCARD%0AVERSION%3A3.0%0AN%3AHAIS%3BRodolphe%3B%3B%3B%0AFN%3ARodolphe%20HAIS%0ATITLE%3AN%C3%A9gociateur%20Technico-Commercial%20B2B%0AORG%3A%0AEMAIL%3BTYPE%3DWORK%3Arodolphe.hais%40gmail.com%0ATEL%3BTYPE%3DCELL%3A%2B33628407987%0AURL%3Ahttps%3A%2F%2Fwww.linkedin.com%2Fin%2Frodolphe-hais-technico-commercial%0AADR%3BTYPE%3DWORK%3A%3B%3BPloufragan%3B%3B%3BFrance%0AEND%3AVCARD"
+        alt="Code QR pour enregistrer le contact"
+        loading="lazy"
+      >
+      <div class="qr-text">Scan QR</div>
+    </div>
+
+    <!-- Contact List -->
+    <address class="contact-list" aria-label="Coordonnées de contact">
+      <a class="contact-row" href="mailto:rodolphe.hais@gmail.com" rel="noopener noreferrer">
+        <span class="clabel">Email</span>
+        <span class="cvalue">rodolphe.hais@gmail.com</span>
+      </a>
+      <a class="contact-row" href="tel:+33628407987" rel="noopener noreferrer">
+        <span class="clabel">Tél.</span>
+        <span class="cvalue">+33 6 28 40 79 87</span>
+      </a>
+      <a class="contact-row" href="https://www.linkedin.com/in/rodolphe-hais-technico-commercial" target="_blank" rel="noopener noreferrer">
+        <span class="clabel">LinkedIn</span>
+        <span class="cvalue">/in/rodolphe-hais...</span>
+      </a>
+    </address>
+
+    <!-- Download Button -->
+    <button
+      id="save-btn"
+      class="save-btn"
+      type="button"
+      aria-live="polite"
+      aria-label="Télécharger la fiche contact au format vCard"
     >
-    <div class="qr-text">Scan QR</div>
-  </div>
+      Enregistrer le contact
+    </button>
 
-  <address class="contact-list" aria-label="Coordonnées">
-    <a class="contact-row" href="mailto:rodolphe.hais@gmail.com">
-      <span class="clabel">Email</span>
-      <span class="cvalue">rodolphe.hais@gmail.com</span>
-    </a>
-    <a class="contact-row" href="tel:+33628407987">
-      <span class="clabel">Tél.</span>
-      <span class="cvalue">+33 6 28 40 79 87</span>
-    </a>
-    <a class="contact-row" href="https://www.linkedin.com/in/rodolphe-hais-technico-commercial" target="_blank" rel="noopener noreferrer">
-      <span class="clabel">LinkedIn</span>
-      <span class="cvalue">/in/rodolphe-hais...</span>
-    </a>
-  </address>
+    <!-- Status Message -->
+    <p id="status" class="foot-note" aria-live="polite" aria-atomic="true">
+      Ajoute la photo automatiquement à ton carnet d'adresses
+    </p>
+  </main>
 
-  <button id="save-btn" class="save-btn" type="button" aria-live="polite" aria-label="Télécharger la fiche contact">Enregistrer le contact</button>
-  <p id="status" class="foot-note" aria-live="polite">Ajoute la photo automatiquement à ton carnet d'adresses</p>
-</main>
-
-<!-- Structured data for discoverability -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Rodolphe HAIS",
-  "jobTitle": "Négociateur Technico-Commercial B2B",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Ploufragan",
-    "addressCountry": "France"
-  },
-  "telephone": "+33 6 28 40 79 87",
-  "email": "mailto:rodolphe.hais@gmail.com",
-  "sameAs": ["https://www.linkedin.com/in/rodolphe-hais-technico-commercial"]
-}
-</script>
-
-<script>
-  const portraitElement = document.getElementById('portrait');
-  const PHOTO_DATA_URI = portraitElement ? portraitElement.currentSrc || portraitElement.src : '';
-  const PHOTO_BASE64 = (PHOTO_DATA_URI && PHOTO_DATA_URI.startsWith('data:image'))
-    ? PHOTO_DATA_URI.split(',')[1] || ''
-    : '';
-
-  // Fold vCard lines to the recommended 75 characters per line using CRLF + space
-  function foldLine(str, limit = 75) {
-    if (!str || str.length <= limit) return str;
-    const parts = [];
-    for (let i = 0; i < str.length; i += limit) {
-      parts.push(str.slice(i, i + limit));
-    }
-    return parts.join('\r\n ');
+  <!-- Structured Data (Schema.org) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Rodolphe HAIS",
+    "jobTitle": "Négociateur Technico-Commercial B2B",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ploufragan",
+      "addressCountry": "FR"
+    },
+    "telephone": "+33 6 28 40 79 87",
+    "email": "rodolphe.hais@gmail.com",
+    "sameAs": [
+      "https://www.linkedin.com/in/rodolphe-hais-technico-commercial"
+    ],
+    "image": "Photo carte de visite.png",
+    "url": "https://haisrodolphe.github.io/carte-contact"
   }
+  </script>
 
-  function buildVCard() {
-    const lines = [
-      'BEGIN:VCARD',
-      'VERSION:3.0',
-      'N:HAIS;Rodolphe;;;',
-      'FN:Rodolphe HAIS',
-      'TITLE:Négociateur Technico-Commercial B2B',
-      'EMAIL;TYPE=WORK:rodolphe.hais@gmail.com',
-      'TEL;TYPE=CELL:+33628407987',
-      'URL:https://www.linkedin.com/in/rodolphe-hais-technico-commercial',
-      'ADR;TYPE=WORK:;;Ploufragan;;;France'
-    ];
-
-    // Add the photo only when a valid base64 payload is available.
-    if (PHOTO_BASE64) {
-      const photoPrefix = 'PHOTO;ENCODING=BASE64;TYPE=JPEG:';
-      const photoLine = photoPrefix + PHOTO_BASE64;
-      lines.push(foldLine(photoLine));
-    }
-
-    lines.push('END:VCARD');
-
-    // Join with CRLF per spec
-    return lines.join('\r\n');
-  }
-
-  async function downloadVCard() {
-    const btn = document.getElementById('save-btn');
-    const status = document.getElementById('status');
-    const originalText = btn.textContent;
-    btn.textContent = 'Préparation...';
-    btn.disabled = true;
-    status.textContent = 'Préparation du fichier vCard...';
-
-    try {
-      const vcard = buildVCard();
-      // Use UTF-8 text and a common vCard mime type
-      const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'Rodolphe-HAIS.vcf';
-      // Some browsers need the anchor appended to the DOM
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      btn.textContent = 'Contact enregistré ✓';
-      status.textContent = 'Fichier .vcf téléchargé — ouvre-le pour importer le contact.';
-    } catch (e) {
-      console.error(e);
-      btn.textContent = 'Erreur — réessaie';
-      status.textContent = 'Une erreur est survenue lors de la création du vCard.';
-    } finally {
-      setTimeout(() => {
-        btn.textContent = originalText;
-        btn.disabled = false;
-      }, 2500);
-    }
-  }
-
-  document.getElementById('save-btn').addEventListener('click', downloadVCard);
-</script>
+  <!-- Application Script (Deferred Loading) -->
+  <script src="script.js" defer></script>
 </body>
+
 </html>
